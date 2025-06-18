@@ -27,7 +27,7 @@ function App() {
     fetchNotes();
   }, [fetchNotes]);
 
-  
+
   const deleteNote = async (id) => {
     try {
       await fetch(`http://localhost:3001/api/notes/${id}`, {

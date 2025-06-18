@@ -3,6 +3,7 @@ import './Footer.css'
 
 const Footer = ({ onNoteAdded }) => {
   const [newNote, setNewNote] = useState("");
+  const [noteContent, setNoteContent] = useState("")
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -10,11 +11,11 @@ const Footer = ({ onNoteAdded }) => {
       const response = await fetch('http://localhost:3001/api/notes', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title: newNote, content: newNote }),
+        body: JSON.stringify({ title: newNote, content: noteContent }),
       });
       if (!response.ok) throw new Error('Failed to add note');
       setNewNote("");
-      alert('Note added successfully!');
+      setNoteContent("");
       if (onNoteAdded) onNoteAdded(); // Trigger refresh
     } catch (error) {
       console.error('Error:', error);
@@ -29,11 +30,19 @@ const Footer = ({ onNoteAdded }) => {
           type="text"
           value={newNote}
           onChange={(e) => setNewNote(e.target.value)}
-          placeholder='New Note'
+          placeholder='Note Title'
           id="noteInput"
           name="note"
         />
-        <button type="submit">Submit</button>
+           <input
+          type="text"
+          value={noteContent}
+          onChange={(e) => setNoteContent(e.target.value)}
+          placeholder='Note Content'
+          id="noteInput"
+          name="note"
+        />
+        <button type="submit" onClick={handleSubmit}>Submit</button>
       </form>
     </div>
   );

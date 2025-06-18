@@ -2,6 +2,9 @@ import React from 'react';
 import "./Fetcher.css";
 
 const Fetcher = ({ notes, loading, error, deleteNote }) => {
+
+
+   const content =() =>{}
   return (
     <div>
       {loading ? (
