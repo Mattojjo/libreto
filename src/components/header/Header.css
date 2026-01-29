@@ -1,0 +1,64 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 0 0 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.header-title {
+    margin: 0;
+    text-align: left;
+    color: #e6eef8;
+    font-size: 2.25rem;
+    letter-spacing: -0.5px;
+}
+
+.header-menu {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.header-add-btn {
+    background: linear-gradient(135deg, #00c2a8, #00a896);
+    color: white;
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 194, 168, 0.3);
+}
+
+.header-add-btn:hover {
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 6px 20px rgba(0, 194, 168, 0.45);
+}
+
+.header-add-btn:active {
+    transform: scale(0.95) rotate(90deg);
+}
+
+.plus-icon {
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1;
+}
+
+@media (max-width: 600px) {
+    .header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .header-menu {
+        align-self: flex-end;
+    }
+}

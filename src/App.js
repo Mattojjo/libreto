@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Header from './components/header/Header';
-import Footer from './components/footer/Footer';
 import Fetcher from './components/fetcher/Fetcher';
 
 function App() {
@@ -56,7 +55,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Header onNoteAdded={fetchNotes} />
       <Fetcher
         notes={notes}
         loading={loading}
@@ -64,7 +63,6 @@ function App() {
         deleteNote={deleteNote}
         updateNote={updateNote}
       />
-      <Footer onNoteAdded={fetchNotes} />
     </div>
   );
 }
