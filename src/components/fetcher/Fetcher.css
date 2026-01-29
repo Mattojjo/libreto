@@ -61,11 +61,17 @@ h1 {
   border-left: 4px solid rgba(0, 0, 0, 0.15);
   position: relative;
   transition: transform .18s ease, box-shadow .18s ease;
+  cursor: pointer;
 }
 
 .note-item:hover {
   transform: translateY(-6px);
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6)
+}
+
+.note-item:focus {
+  outline: 3px solid rgba(0, 194, 168, 0.12);
+  outline-offset: 4px;
 }
 
 .note-title {
@@ -90,6 +96,9 @@ h1 {
 }
 
 .note-actions {
+  position: absolute;
+  bottom: 1rem;
+  right: 1.25rem;
   display: flex;
   gap: .5rem;
   align-items: center

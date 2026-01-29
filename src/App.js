@@ -41,10 +41,29 @@ function App() {
     }
   };
 
+  const updateNote = async (id, { title, content }) => {
+    try {
+      await fetch(`http://localhost:3001/api/notes/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, content })
+      });
+      fetchNotes();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <div className="App">
       <Header />
-      <Fetcher notes={notes} loading={loading} error={error} deleteNote={deleteNote} />
+      <Fetcher
+        notes={notes}
+        loading={loading}
+        error={error}
+        deleteNote={deleteNote}
+        updateNote={updateNote}
+      />
       <Footer onNoteAdded={fetchNotes} />
     </div>
   );
