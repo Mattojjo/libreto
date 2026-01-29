@@ -61,6 +61,10 @@
     border-radius: 8px;
     border: none;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.875rem;
 }
 
 .modal-btn--cancel {

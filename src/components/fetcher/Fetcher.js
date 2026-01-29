@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import { Edit2, CheckCircle } from 'lucide-react';
 import "./Fetcher.css";
 import Modal from '../modal/Modal';
 
-const Fetcher = ({ notes = [], loading, error, deleteNote, updateNote }) => {
+const Fetcher = ({ notes = [], loading, error, deleteNote, updateNote, bulkMode, selectedIds, setSelectedIds }) => {
   const [selectedNote, setSelectedNote] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -25,28 +26,47 @@ const Fetcher = ({ notes = [], loading, error, deleteNote, updateNote }) => {
     closeEditor();
   };
 
+  const toggleSelect = (id) => {
+    setSelectedIds(prev =>
+      prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+    );
+  };
+
   return (
     <>
       <div className="notes-list">
         {notes.map((note) => (
           <div
             key={note.id}
-            className="note-item"
+            className={`note-item ${bulkMode ? 'bulk-mode' : ''} ${selectedIds.includes(note.id) ? 'selected' : ''}`}
             role="button"
             tabIndex={0}
-            onClick={() => openEditor(note)}
+            onClick={() => bulkMode ? toggleSelect(note.id) : openEditor(note)}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                openEditor(note);
+                bulkMode ? toggleSelect(note.id) : openEditor(note);
               }
             }}
           >
+            {bulkMode && (
+              <div className="note-checkbox-wrapper" onClick={(e) => e.stopPropagation()}>
+                {selectedIds.includes(note.id) ? (
+                  <CheckCircle size={20} className="note-checkbox checked" onClick={() => toggleSelect(note.id)} />
+                ) : (
+                  <div className="note-checkbox unchecked" onClick={() => toggleSelect(note.id)} />
+                )}
+              </div>
+            )}
             <div className="note-title">{note.title}</div>
             <div className="note-content">{note.content}</div>
-            <div className="note-actions">
-              <button onClick={(e) => { e.stopPropagation(); openEditor(note); }}>Edit</button>
-            </div>
+            {!bulkMode && (
+              <div className="note-actions">
+                <button onClick={(e) => { e.stopPropagation(); openEditor(note); }}>
+                  <Edit2 size={16} />
+                </button>
+              </div>
+            )}
           </div>
         ))}
       </div>

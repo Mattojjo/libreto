@@ -6,6 +6,8 @@ function App() {
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [bulkMode, setBulkMode] = useState(false);
+  const [selectedIds, setSelectedIds] = useState([]);
 
   const fetchNotes = useCallback(async () => {
     setLoading(true);
@@ -53,15 +55,45 @@ function App() {
     }
   };
 
+  const toggleBulkMode = () => {
+    setBulkMode(!bulkMode);
+    setSelectedIds([]);
+  };
+
+  const selectAll = () => {
+    setSelectedIds(selectedIds.length === notes.length ? [] : notes.map(n => n.id));
+  };
+
+  const deleteSelected = async () => {
+    if (!selectedIds.length) return;
+    if (!window.confirm(`Delete ${selectedIds.length} note(s)?`)) return;
+    for (const id of selectedIds) {
+      await deleteNote(id);
+    }
+    setSelectedIds([]);
+    setBulkMode(false);
+  };
+
   return (
     <div className="App">
-      <Header onNoteAdded={fetchNotes} />
+      <Header
+        onNoteAdded={fetchNotes}
+        bulkMode={bulkMode}
+        toggleBulkMode={toggleBulkMode}
+        selectAll={selectAll}
+        deleteSelected={deleteSelected}
+        selectedCount={selectedIds.length}
+        totalNotes={notes.length}
+      />
       <Fetcher
         notes={notes}
         loading={loading}
         error={error}
         deleteNote={deleteNote}
         updateNote={updateNote}
+        bulkMode={bulkMode}
+        selectedIds={selectedIds}
+        setSelectedIds={setSelectedIds}
       />
     </div>
   );

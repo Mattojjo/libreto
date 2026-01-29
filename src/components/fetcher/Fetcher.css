@@ -104,6 +104,26 @@ h1 {
   align-items: center
 }
 
+.note-actions button {
+  background: rgba(0, 194, 168, 0.1);
+  color: var(--accent);
+  border: 1px solid rgba(0, 194, 168, 0.3);
+  padding: .5rem .6rem;
+  border-radius: 6px;
+  font-size: .85rem;
+  cursor: pointer;
+  transition: all .12s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.note-actions button:hover {
+  background: rgba(0, 194, 168, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 194, 168, 0.35)
+}
+
 button {
   background: transparent;
   color: var(--text);
@@ -150,6 +170,109 @@ button.danger {
   padding: 48px;
   color: var(--muted);
   font-size: 1.125rem
+}
+
+/* Bulk select controls */
+.bulk-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.bulk-toggle-btn,
+.bulk-select-all-btn,
+.bulk-delete-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bulk-toggle-btn {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.bulk-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.bulk-select-all-btn {
+  background: rgba(0, 194, 168, 0.15);
+  color: var(--accent);
+  border: 1px solid rgba(0, 194, 168, 0.3);
+}
+
+.bulk-select-all-btn:hover {
+  background: rgba(0, 194, 168, 0.25);
+  transform: translateY(-1px);
+}
+
+.bulk-delete-btn {
+  background: linear-gradient(90deg, var(--danger), #ff4b4b);
+  color: white;
+  border: none;
+}
+
+.bulk-delete-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.bulk-delete-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Checkbox styling */
+.note-checkbox-wrapper {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 10;
+}
+
+.note-checkbox {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.note-checkbox.checked {
+  color: var(--accent);
+  filter: drop-shadow(0 0 4px rgba(0, 194, 168, 0.5));
+}
+
+.note-checkbox.unchecked {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.note-checkbox.unchecked:hover {
+  border-color: var(--accent);
+  background: rgba(0, 194, 168, 0.1);
+}
+
+.note-item.bulk-mode {
+  padding-left: 3rem;
+}
+
+.note-item.selected {
+  border-left: 4px solid var(--accent);
+  background: linear-gradient(180deg, rgba(0, 194, 168, 0.08), rgba(11, 19, 32, 0.95));
+}
+
+.note-item.selected::after {
+  background: var(--accent);
+  box-shadow: 0 0 18px rgba(0, 194, 168, 0.6);
 }
 
 @media (max-width:420px) {

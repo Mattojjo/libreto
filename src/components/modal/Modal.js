@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Trash2, Save, X } from 'lucide-react';
 import './Modal.css';
 
 const Modal = ({ isOpen, note, onClose, onSave, onDelete }) => {
@@ -40,9 +41,18 @@ const Modal = ({ isOpen, note, onClose, onSave, onDelete }) => {
                     <textarea className="modal-textarea" value={content} onChange={(e) => setContent(e.target.value)} rows={6} />
 
                     <div className="modal-actions">
-                        <button type="button" className="modal-btn modal-btn--cancel" onClick={onClose}>Cancel</button>
-                        <button type="button" className="modal-btn modal-btn--danger" onClick={handleDelete}>Delete</button>
-                        <button type="submit" className="modal-btn modal-btn--save">Save</button>
+                        <button type="button" className="modal-btn modal-btn--cancel" onClick={onClose}>
+                            <X size={16} />
+                            <span>Cancel</span>
+                        </button>
+                        <button type="button" className="modal-btn modal-btn--danger" onClick={handleDelete}>
+                            <Trash2 size={16} />
+                            <span>Delete</span>
+                        </button>
+                        <button type="submit" className="modal-btn modal-btn--save">
+                            <Save size={16} />
+                            <span>Save</span>
+                        </button>
                     </div>
                 </form>
             </div>
