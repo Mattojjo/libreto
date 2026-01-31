@@ -1,3 +1,12 @@
+:root {
+  --bg: #0f1724;
+  --card: #1a2332;
+  --muted: #8a94a6;
+  --text: #e6eef8;
+  --accent: #00c2a8;
+  --danger: #ff6b6b;
+}
+
 /* Sidebar */
 .sidebar {
   width: 17.5rem;
