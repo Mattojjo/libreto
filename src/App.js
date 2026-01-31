@@ -1,59 +1,12 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import Header from './components/header/Header';
-import Fetcher from './components/fetcher/Fetcher';
+import NotesList from './components/notes-list/NotesList';
+import { useNotes } from './hooks/useNotes';
 
 function App() {
-  const [notes, setNotes] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { notes, loading, error, fetchNotes, deleteNote, updateNote } = useNotes();
   const [bulkMode, setBulkMode] = useState(false);
   const [selectedIds, setSelectedIds] = useState([]);
-
-  const fetchNotes = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await fetch('http://localhost:3001/api/notes');
-      if (!response.ok) throw new Error('Failed to fetch notes');
-      const data = await response.json();
-      setNotes(data);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchNotes();
-  }, [fetchNotes]);
-
-
-  const deleteNote = async (id) => {
-    try {
-      await fetch(`http://localhost:3001/api/notes/${id}`, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' }
-      });
-      // Re-fetch notes from server for consistency
-      fetchNotes();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const updateNote = async (id, { title, content }) => {
-    try {
-      await fetch(`http://localhost:3001/api/notes/${id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title, content })
-      });
-      fetchNotes();
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
   const toggleBulkMode = () => {
     setBulkMode(!bulkMode);
@@ -85,7 +38,7 @@ function App() {
         selectedCount={selectedIds.length}
         totalNotes={notes.length}
       />
-      <Fetcher
+      <NotesList
         notes={notes}
         loading={loading}
         error={error}

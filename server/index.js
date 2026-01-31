@@ -79,6 +79,36 @@ app.delete('/api/notes/:id', (req, res) => {
     }
 });
 
+// PUT endpoint implementation
+app.put('/api/notes/:id', (req, res) => {
+    try {
+        const notes = JSON.parse(readDb()) || [];
+        const id = parseInt(req.params.id);
+        const { title, content } = req.body;
+        
+        const noteIndex = notes.findIndex(note => note.id === id);
+        
+        if (noteIndex === -1) {
+            return res.status(404).json({ message: 'Note not found' });
+        }
+
+        notes[noteIndex] = {
+            ...notes[noteIndex],
+            title: title || notes[noteIndex].title,
+            content: content || notes[noteIndex].content
+        };
+
+        if (writeDb(notes)) {
+            res.json({ message: 'Note updated successfully', note: notes[noteIndex] });
+        } else {
+            res.status(500).json({ message: 'Error writing data' });
+        }
+    } catch (error) {
+        console.error('Error updating note:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });

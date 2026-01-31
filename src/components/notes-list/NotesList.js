@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Edit2, CheckCircle } from 'lucide-react';
-import "./Fetcher.css";
+import "./NotesList.css";
 import Modal from '../modal/Modal';
 
-const Fetcher = ({ notes = [], loading, error, deleteNote, updateNote, bulkMode, selectedIds, setSelectedIds }) => {
+const NotesList = ({ notes = [], loading, error, deleteNote, updateNote, bulkMode, selectedIds, setSelectedIds }) => {
   const [selectedNote, setSelectedNote] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -83,4 +83,4 @@ const Fetcher = ({ notes = [], loading, error, deleteNote, updateNote, bulkMode,
   );
 };
 
-export default Fetcher;
+export default NotesList;

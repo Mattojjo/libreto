@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ENDPOINTS } from '../../constants/api';
 import './AddNoteModal.css';
 
 const AddNoteModal = ({ isOpen, onClose, onNoteAdded }) => {
@@ -13,7 +14,7 @@ const AddNoteModal = ({ isOpen, onClose, onNoteAdded }) => {
         if (!title.trim() && !content.trim()) return;
         setSubmitting(true);
         try {
-            const response = await fetch('http://localhost:3001/api/notes', {
+            const response = await fetch(ENDPOINTS.NOTES, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ title: title.trim(), content: content.trim() }),
