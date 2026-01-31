@@ -2,10 +2,10 @@ import React from 'react';
 import { FormattedText } from '../../utils/textFormatter';
 import './NoteViewer.css';
 
-const NoteViewer = ({ note, className = '' }) => {
+const NoteViewer = ({ note }) => {
   if (!note) {
     return (
-      <div className={`note-viewer empty-viewer ${className}`}>
+      <div className="note-viewer empty-viewer">
         <div className="empty-note-state">
           <div className="empty-note-icon">📝</div>
           <h2>Select a note to view</h2>
@@ -28,7 +28,7 @@ const NoteViewer = ({ note, className = '' }) => {
   };
 
   return (
-    <div className={`note-viewer ${className}`}>
+    <div className='note-viewer'>
       <div className="note-viewer-header">
         <h1 className="note-viewer-title">{note.title}</h1>
         <div className="note-viewer-meta">

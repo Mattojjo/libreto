@@ -1,19 +1,7 @@
-:root {
-  --bg: #0f1724;
-  --card: #1a2332;
-  --muted: #8a94a6;
-  --text: #e6eef8;
-  --accent: #00c2a8;
-  --danger: #ff6b6b;
-}
-
 .note-viewer {
-  width: 100%;
-  height: 100%;
+  flex: 1;
   overflow-y: auto;
-  background: var(--bg);
-  display: flex;
-  flex-direction: column;
+  padding: 2rem;
 }
 
 .empty-viewer {
@@ -25,83 +13,21 @@
 
 .empty-note-state {
   text-align: center;
-  padding: 3rem 2rem;
-}
-
-.empty-note-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  opacity: 0.5;
-}
-
-.empty-note-state h2 {
-  color: var(--text);
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-}
-
-.empty-note-state p {
   color: var(--muted);
-  font-size: 1rem;
-}
-
-.note-viewer-header {
-  padding: 3rem 3rem 2rem;
-  border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
-  background: rgba(26, 35, 50, 0.3);
-  flex-shrink: 0;
 }
 
 .note-viewer-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 1rem;
-  line-height: 1.2;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.note-viewer-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
 .note-meta-item {
-  font-size: 0.875rem;
   color: var(--muted);
-}
-
-.note-viewer-content {
-  padding: 2rem 3rem 3rem;
-  flex: 1;
-  line-height: 1.7;
-  overflow-y: auto;
-}
-
-.note-viewer-content p {
-  color: var(--text);
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
-}
-
-.note-viewer-content code {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
-  font-family: Monaco, 'Cascadia Code', monospace;
-  color: var(--accent);
-}
-
-.note-viewer-content strong {
-  color: var(--text);
-  font-weight: 600;
-}
-
-@media (max-width: 768px) {
-  .note-viewer-header {
-    padding: 2rem 1.5rem 1.5rem;
-  }
-  
-  .note-viewer-title {
-    font-size: 2rem;
-  }
-  
-  .note-viewer-content {
-    padding: 1.5rem;
-  }
+  font-size: 0.875rem;
 }

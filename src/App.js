@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Sidebar from './components/sidebar/Sidebar';
 import NoteViewer from './components/note-viewer/NoteViewer';
 import { useNotes } from './hooks/useNotes';
+import './App.css'
 
 function App() {
   const { notes, loading, error, fetchNotes, deleteNote, updateNote } = useNotes();
@@ -32,53 +33,40 @@ function App() {
     setSelectedNote(note);
   };
 
-  // Auto-select first note when notes are loaded
   useEffect(() => {
     if (notes.length > 0 && !selectedNote) {
       setSelectedNote(notes[0]);
     } else if (notes.length > 0 && selectedNote && !notes.find(n => n.id === selectedNote.id)) {
-      // If selected note was deleted, select the first available note
       setSelectedNote(notes[0]);
     } else if (notes.length === 0) {
       setSelectedNote(null);
     }
   }, [notes, selectedNote]);
 
-  if (loading) {
-    return (
-      <div className="App">
-        <div className="loading-state">Loading...</div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="App">
-        <div className="error-state">Error: {error}</div>
-      </div>
-    );
-  }
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="App">
-      <Sidebar
-        notes={notes}
-        onNoteAdded={fetchNotes}
-        deleteNote={deleteNote}
-        updateNote={updateNote}
-        selectedNote={selectedNote}
-        onNoteSelect={handleNoteSelect}
-        bulkMode={bulkMode}
-        toggleBulkMode={toggleBulkMode}
-        selectAll={selectAll}
-        deleteSelected={deleteSelected}
-        selectedIds={selectedIds}
-        setSelectedIds={setSelectedIds}
-        selectedCount={selectedIds.length}
-        totalNotes={notes.length}
-      />
-      <NoteViewer note={selectedNote} className="main-content" />
+      <div className="layout-container">
+        <NoteViewer note={selectedNote} />
+        <Sidebar
+          notes={notes}
+          onNoteAdded={fetchNotes}
+          deleteNote={deleteNote}
+          updateNote={updateNote}
+          selectedNote={selectedNote}
+          onNoteSelect={handleNoteSelect}
+          bulkMode={bulkMode}
+          toggleBulkMode={toggleBulkMode}
+          selectAll={selectAll}
+          deleteSelected={deleteSelected}
+          selectedIds={selectedIds}
+          setSelectedIds={setSelectedIds}
+          selectedCount={selectedIds.length}
+          totalNotes={notes.length}
+        />
+      </div>
     </div>
   );
 }
