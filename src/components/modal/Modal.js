@@ -38,6 +38,9 @@ const Modal = ({ isOpen, note, onClose, onSave, onDelete }) => {
                     <input className="modal-input" value={title} onChange={(e) => setTitle(e.target.value)} />
 
                     <label className="modal-label">Content</label>
+                    <div className="modal-hint">
+                        Use **bold** for bold text and `code` for code formatting
+                    </div>
                     <textarea className="modal-textarea" value={content} onChange={(e) => setContent(e.target.value)} rows={6} />
 
                     <div className="modal-actions">

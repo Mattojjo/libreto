@@ -284,3 +284,24 @@ button.danger {
     padding: 8px
   }
 }
+
+/* Text formatting styles */
+.note-title strong,
+.note-content strong {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.note-title code,
+.note-content code {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ff6b9d;
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+  font-size: 0.9em;
+}
+
+.note-content br {
+  line-height: 1.6;
+}

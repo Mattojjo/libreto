@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Edit2, CheckCircle } from 'lucide-react';
 import "./NotesList.css";
 import Modal from '../modal/Modal';
+import { FormattedText } from '../../utils/textFormatter';
 
 const NotesList = ({ notes = [], loading, error, deleteNote, updateNote, bulkMode, selectedIds, setSelectedIds }) => {
   const [selectedNote, setSelectedNote] = useState(null);
@@ -58,8 +59,8 @@ const NotesList = ({ notes = [], loading, error, deleteNote, updateNote, bulkMod
                 )}
               </div>
             )}
-            <div className="note-title">{note.title}</div>
-            <div className="note-content">{note.content}</div>
+            <FormattedText text={note.title} className="note-title" />
+            <FormattedText text={note.content} className="note-content" />
             {!bulkMode && (
               <div className="note-actions">
                 <button onClick={(e) => { e.stopPropagation(); openEditor(note); }}>

@@ -69,6 +69,21 @@
     cursor: not-allowed;
 }
 
+.add-modal-hint {
+    font-size: 0.8em;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+    font-style: italic;
+}
+
+.add-modal-hint code {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ff6b9d;
+    padding: 0.1em 0.2em;
+    border-radius: 2px;
+    font-family: monospace;
+}
+
 @media (max-width: 560px) {
     .add-modal {
         padding: 14px;

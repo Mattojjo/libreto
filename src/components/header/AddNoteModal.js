@@ -48,11 +48,14 @@ const AddNoteModal = ({ isOpen, onClose, onNoteAdded }) => {
                     />
 
                     <label className="add-modal-label">Content</label>
+                    <div className="add-modal-hint">
+                        Use **bold** for bold text and `code` for code formatting
+                    </div>
                     <textarea
                         className="add-modal-textarea"
                         value={content}
                         onChange={(e) => setContent(e.target.value)}
-                        placeholder="Enter note content"
+                        placeholder="Enter note content&#10;&#10;Formatting examples:&#10;**This will be bold**&#10;`This will be code`"
                         rows={6}
                     />
 
