@@ -16,6 +16,12 @@
   color: var(--muted);
 }
 
+.note-viewer-header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+
 .note-viewer-title {
   font-size: 2rem;
   margin-bottom: 0.5rem;
@@ -24,10 +30,75 @@
 .note-viewer-meta {
   display: flex;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .note-meta-item {
   color: var(--muted);
   font-size: 0.875rem;
+}
+
+.note-viewer-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-self: flex-end;
+}
+
+.note-action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.edit-btn {
+  color: var(--primary);
+}
+
+.edit-btn:hover {
+  background-color: var(--primary-light);
+}
+
+.save-btn {
+  color: var(--success);
+}
+
+.save-btn:hover {
+  background-color: var(--success-light);
+}
+
+.cancel-btn {
+  color: var(--danger);
+}
+
+.cancel-btn:hover {
+  background-color: var(--danger-light);
+}
+
+.note-edit-title {
+  font-size: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  background: var(--background);
+  color: var(--text);
+}
+
+.note-edit-content {
+  width: 100%;
+  min-height: 400px;
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  padding: 1rem;
+  background: var(--background);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1rem;
+  resize: vertical;
 }

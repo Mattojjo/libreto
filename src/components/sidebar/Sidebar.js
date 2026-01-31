@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, CheckSquare, Square, X, Trash2, Edit2 } from 'lucide-react';
+import { Plus, CheckSquare, Square, X, Trash2 } from 'lucide-react';
 import { ENDPOINTS } from '../../constants/api';
 import './Sidebar.css';
 
@@ -91,24 +91,6 @@ const Sidebar = ({
   totalNotes 
 }) => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [noteToEdit, setNoteToEdit] = useState(null);
-
-  const openEditor = (note, e) => {
-    e.stopPropagation();
-    setNoteToEdit(note);
-    setIsEditModalOpen(true);
-  };
-
-  const closeEditor = () => {
-    setIsEditModalOpen(false);
-    setNoteToEdit(null);
-  };
-
-  const handleSave = async (updated) => {
-    if (updateNote) await updateNote(updated.id, { title: updated.title, content: updated.content });
-    closeEditor();
-  };
 
   const toggleSelect = (id, e) => {
     e.stopPropagation();
@@ -192,15 +174,6 @@ const Sidebar = ({
                   {formatDate(note.createdAt || note.updatedAt)}
                 </span>
               </div>
-              {!bulkMode && (
-                <button
-                  className="note-edit-btn"
-                  onClick={(e) => openEditor(note, e)}
-                  title="Edit note"
-                >
-                  <Edit2 size={14} />
-                </button>
-              )}
             </div>
           ))}
           {notes.length === 0 && (
@@ -219,17 +192,6 @@ const Sidebar = ({
         onSave={() => {
           onNoteAdded();
           setIsAddModalOpen(false);
-        }}
-      />
-
-      <SimpleModal
-        isOpen={isEditModalOpen}
-        onClose={closeEditor}
-        title="Edit Note"
-        note={noteToEdit}
-        onSave={() => {
-          updateNote && updateNote();
-          closeEditor();
         }}
       />
     </>

@@ -5,6 +5,13 @@
   --text: #e6eef8;
   --accent: #00c2a8;
   --danger: #ff6b6b;
+  --primary: #00c2a8;
+  --primary-light: rgba(0, 194, 168, 0.1);
+  --success: #00c2a8;
+  --success-light: rgba(0, 194, 168, 0.1);
+  --danger-light: rgba(255, 107, 107, 0.1);
+  --background: var(--bg);
+  --border: var(--card);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }

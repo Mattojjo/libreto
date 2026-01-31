@@ -49,7 +49,7 @@ function App() {
   return (
     <div className="App">
       <div className="layout-container">
-        <NoteViewer note={selectedNote} />
+        <NoteViewer note={selectedNote} onUpdateNote={updateNote} />
         <Sidebar
           notes={notes}
           onNoteAdded={fetchNotes}
