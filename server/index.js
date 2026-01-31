@@ -31,8 +31,13 @@ function writeDb(data) {
 }
 
 app.get('/api/notes', (req, res) => {
+    console.log('GET /api/notes endpoint hit');
     const data = readDb();
-    if (!data) return res.status(500).json({ message: 'Error reading data' });
+    if (!data) {
+        console.log('Error reading data');
+        return res.status(500).json({ message: 'Error reading data' });
+    }
+    console.log('Sending notes data:', JSON.parse(data));
     res.json(JSON.parse(data));
 });
 
@@ -42,7 +47,9 @@ app.post('/api/notes', (req, res) => {
         const newNote = {
             id: Date.now(),
             title: req.body.title,
-            content: req.body.content
+            content: req.body.content,
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
         };
         notes.push(newNote);
         if (writeDb(notes)) {
@@ -95,7 +102,8 @@ app.put('/api/notes/:id', (req, res) => {
         notes[noteIndex] = {
             ...notes[noteIndex],
             title: title || notes[noteIndex].title,
-            content: content || notes[noteIndex].content
+            content: content || notes[noteIndex].content,
+            updatedAt: new Date().toISOString()
         };
 
         if (writeDb(notes)) {
@@ -111,4 +119,5 @@ app.put('/api/notes/:id', (req, res) => {
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
+    console.log(`API available at http://localhost:${port}/api/notes`);
 });

@@ -15,6 +15,7 @@ export const useNotes = () => {
       const data = await response.json();
       setNotes(data);
     } catch (err) {
+      console.error('Error fetching notes:', err);
       setError(err.message);
     } finally {
       setLoading(false);

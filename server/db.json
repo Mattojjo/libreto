@@ -2,26 +2,36 @@
   {
     "id": 1749236290267,
     "title": "note number 2 test",
-    "content": "note `number` 2 test"
+    "content": "note `number` 2 test",
+    "createdAt": "2025-01-31T10:00:00.000Z",
+    "updatedAt": "2025-01-31T10:00:00.000Z"
   },
   {
     "id": 1750265990969,
     "title": "aasdfa",
-    "content": "asdfaf"
+    "content": "asdfaf",
+    "createdAt": "2025-01-31T09:00:00.000Z",
+    "updatedAt": "2025-01-31T09:00:00.000Z"
   },
   {
     "id": 1769709991198,
     "title": "Test 2",
-    "content": "to **be** deleted"
+    "content": "to **be** deleted",
+    "createdAt": "2025-01-31T08:00:00.000Z",
+    "updatedAt": "2025-01-31T08:00:00.000Z"
   },
   {
     "id": 1769713874894,
     "title": "Pay Bills",
-    "content": "`Phone Bills`\n`Internet`\n**Credit Cards**"
+    "content": "`Phone Bills`\n`Internet`\n**Credit Cards**",
+    "createdAt": "2025-01-31T07:00:00.000Z",
+    "updatedAt": "2025-01-31T07:00:00.000Z"
   },
   {
     "id": 1769827638883,
     "title": "aASDF",
-    "content": "ASDF"
+    "content": "ASDF",
+    "createdAt": "2025-01-31T06:00:00.000Z",
+    "updatedAt": "2025-01-31T06:00:00.000Z"
   }
 ]
