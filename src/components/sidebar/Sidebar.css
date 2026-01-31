@@ -1,6 +1,7 @@
 .sidebar {
   width: 300px;
   min-width: 300px;
+  max-width: 300px;
   height: 100vh;
   background: linear-gradient(180deg, var(--card), rgba(11, 19, 32, 0.95));
   border-right: 1px solid rgba(255, 255, 255, 0.06);
@@ -8,6 +9,7 @@
   flex-direction: column;
   overflow: hidden;
   flex-shrink: 0;
+  position: relative;
 }
 
 .sidebar-header {

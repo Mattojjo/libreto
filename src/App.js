@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from './components/sidebar/Sidebar';
 import NoteViewer from './components/note-viewer/NoteViewer';
 import { useNotes } from './hooks/useNotes';
@@ -31,6 +31,18 @@ function App() {
   const handleNoteSelect = (note) => {
     setSelectedNote(note);
   };
+
+  // Auto-select first note when notes are loaded
+  useEffect(() => {
+    if (notes.length > 0 && !selectedNote) {
+      setSelectedNote(notes[0]);
+    } else if (notes.length > 0 && selectedNote && !notes.find(n => n.id === selectedNote.id)) {
+      // If selected note was deleted, select the first available note
+      setSelectedNote(notes[0]);
+    } else if (notes.length === 0) {
+      setSelectedNote(null);
+    }
+  }, [notes, selectedNote]);
 
   if (loading) {
     return (
