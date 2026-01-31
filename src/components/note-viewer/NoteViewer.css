@@ -1,19 +1,8 @@
-:root {
-  --bg: #0f1724;
-  --card: #0b1320;
-  --muted: #98a0ad;
-  --text: #e6eef8;
-  --accent: #00c2a8;
-  --danger: #ff6b6b;
-  --glass: rgba(255, 255, 255, 0.03);
-}
-
 .note-viewer {
   width: 100%;
   height: 100%;
   overflow-y: auto;
   background: var(--bg);
-  padding: 0;
   display: flex;
   flex-direction: column;
 }
@@ -22,16 +11,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
 }
 
 .empty-note-state {
   text-align: center;
-  max-width: 400px;
-  padding: 2rem;
+  padding: 3rem 2rem;
 }
 
 .empty-note-icon {
-  font-size: 4rem;
+  font-size: 3rem;
   margin-bottom: 1rem;
   opacity: 0.5;
 }
@@ -46,28 +35,21 @@
 .empty-note-state p {
   color: var(--muted);
   font-size: 1rem;
-  line-height: 1.5;
 }
 
 .note-viewer-header {
   padding: 3rem 3rem 2rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  background: linear-gradient(180deg, var(--card), rgba(11, 19, 32, 0.3));
+  border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
+  background: rgba(26, 35, 50, 0.3);
+  flex-shrink: 0;
 }
 
 .note-viewer-title {
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--text);
-  margin: 0 0 1rem 0;
+  margin-bottom: 1rem;
   line-height: 1.2;
-  letter-spacing: -0.5px;
-}
-
-.note-viewer-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
 }
 
 .note-meta-item {
@@ -77,95 +59,23 @@
 
 .note-viewer-content {
   padding: 2rem 3rem 3rem;
-  max-width: none;
+  flex: 1;
   line-height: 1.7;
+  overflow-y: auto;
 }
 
 .note-viewer-content p {
   color: var(--text);
   font-size: 1.1rem;
   margin-bottom: 1.5rem;
-  word-wrap: break-word;
-}
-
-.note-viewer-content h1,
-.note-viewer-content h2,
-.note-viewer-content h3,
-.note-viewer-content h4,
-.note-viewer-content h5,
-.note-viewer-content h6 {
-  color: var(--text);
-  margin: 2rem 0 1rem 0;
-  line-height: 1.3;
-}
-
-.note-viewer-content h1 {
-  font-size: 2rem;
-  font-weight: 700;
-}
-
-.note-viewer-content h2 {
-  font-size: 1.75rem;
-  font-weight: 600;
-}
-
-.note-viewer-content h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-
-.note-viewer-content ul,
-.note-viewer-content ol {
-  margin: 1rem 0;
-  padding-left: 2rem;
-}
-
-.note-viewer-content li {
-  color: var(--text);
-  margin-bottom: 0.5rem;
-}
-
-.note-viewer-content blockquote {
-  border-left: 4px solid var(--accent);
-  padding-left: 1.5rem;
-  margin: 1.5rem 0;
-  font-style: italic;
-  color: var(--muted);
 }
 
 .note-viewer-content code {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.1);
   padding: 0.2rem 0.4rem;
   border-radius: 4px;
-  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
-  font-size: 0.9em;
+  font-family: Monaco, 'Cascadia Code', monospace;
   color: var(--accent);
-}
-
-.note-viewer-content pre {
-  background: rgba(255, 255, 255, 0.03);
-  padding: 1.5rem;
-  border-radius: 8px;
-  overflow-x: auto;
-  margin: 1.5rem 0;
-  border-left: 4px solid var(--accent);
-}
-
-.note-viewer-content pre code {
-  background: none;
-  padding: 0;
-  color: var(--text);
-}
-
-.note-viewer-content a {
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease;
-}
-
-.note-viewer-content a:hover {
-  border-bottom-color: var(--accent);
 }
 
 .note-viewer-content strong {
@@ -173,30 +83,6 @@
   font-weight: 600;
 }
 
-.note-viewer-content em {
-  color: var(--text);
-  font-style: italic;
-}
-
-/* Scrollbar styling */
-.note-viewer::-webkit-scrollbar {
-  width: 8px;
-}
-
-.note-viewer::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.note-viewer::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-}
-
-.note-viewer::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.15);
-}
-
-/* Responsive design */
 @media (max-width: 768px) {
   .note-viewer-header {
     padding: 2rem 1.5rem 1.5rem;
@@ -207,10 +93,6 @@
   }
   
   .note-viewer-content {
-    padding: 1.5rem 1.5rem 2rem;
-  }
-  
-  .note-viewer-content p {
-    font-size: 1rem;
+    padding: 1.5rem;
   }
 }

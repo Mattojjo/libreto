@@ -1,8 +1,78 @@
 import React, { useState } from 'react';
 import { Plus, CheckSquare, Square, X, Trash2, Edit2 } from 'lucide-react';
-import AddNoteModal from '../header/AddNoteModal';
-import Modal from '../modal/Modal';
+import { ENDPOINTS } from '../../constants/api';
 import './Sidebar.css';
+
+const SimpleModal = ({ isOpen, onClose, title, onSave, note = null }) => {
+  const [formTitle, setFormTitle] = useState(note?.title || '');
+  const [formContent, setFormContent] = useState(note?.content || '');
+
+  if (!isOpen) return null;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!formTitle.trim() || !formContent.trim()) return;
+
+    try {
+      if (note) {
+        // Edit existing note
+        await fetch(ENDPOINTS.NOTE_BY_ID(note.id), {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title: formTitle, content: formContent })
+        });
+      } else {
+        // Add new note
+        await fetch(ENDPOINTS.NOTES, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title: formTitle, content: formContent })
+        });
+      }
+      onSave();
+      setFormTitle('');
+      setFormContent('');
+    } catch (error) {
+      console.error('Error saving note:', error);
+    }
+  };
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-header">
+          <h2>{title}</h2>
+          <button className="modal-close" onClick={onClose}>×</button>
+        </div>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Note title..."
+            value={formTitle}
+            onChange={(e) => setFormTitle(e.target.value)}
+            className="modal-input"
+            autoFocus
+          />
+          <textarea
+            placeholder="Write your note..."
+            value={formContent}
+            onChange={(e) => setFormContent(e.target.value)}
+            className="modal-textarea"
+            rows={10}
+          />
+          <div className="modal-actions">
+            <button type="button" onClick={onClose} className="modal-btn-cancel">
+              Cancel
+            </button>
+            <button type="submit" className="modal-btn-save">
+              {note ? 'Update' : 'Save'}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
 
 const Sidebar = ({ 
   notes = [], 
@@ -142,23 +212,26 @@ const Sidebar = ({
         </div>
       </div>
 
-      <AddNoteModal
+      <SimpleModal
         isOpen={isAddModalOpen}
         onClose={() => setIsAddModalOpen(false)}
-        onNoteAdded={(newNote) => {
+        title="Add New Note"
+        onSave={() => {
           onNoteAdded();
           setIsAddModalOpen(false);
         }}
       />
 
-      {noteToEdit && (
-        <Modal
-          isOpen={isEditModalOpen}
-          onClose={closeEditor}
-          note={noteToEdit}
-          onSave={handleSave}
-        />
-      )}
+      <SimpleModal
+        isOpen={isEditModalOpen}
+        onClose={closeEditor}
+        title="Edit Note"
+        note={noteToEdit}
+        onSave={() => {
+          updateNote && updateNote();
+          closeEditor();
+        }}
+      />
     </>
   );
 };
