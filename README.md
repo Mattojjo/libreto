@@ -1,4 +1,5 @@
 # Libreto
+<img width="3168" height="2574" alt="Screenshot 2026-02-10 at 16-06-14 React App" src="https://github.com/user-attachments/assets/e129f74c-9962-472a-8e2a-3306c630e27a" />
 
 A minimal note-taking app built with React and Node.js.
 
