@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Sidebar from './components/sidebar/Sidebar';
 import NoteViewer from './components/note-viewer/NoteViewer';
 import { useNotes } from './hooks/useNotes';
-import './App.css'
 
 function App() {
   const { notes, loading, error, fetchNotes, deleteNote, updateNote } = useNotes();
@@ -43,30 +42,28 @@ function App() {
     }
   }, [notes, selectedNote]);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading) return <div className="flex items-center justify-center h-screen text-foreground">Loading...</div>;
+  if (error) return <div className="flex items-center justify-center h-screen text-danger">Error: {error}</div>;
 
   return (
-    <div className="App">
-      <div className="layout-container">
-        <NoteViewer note={selectedNote} onUpdateNote={updateNote} />
-        <Sidebar
-          notes={notes}
-          onNoteAdded={fetchNotes}
-          deleteNote={deleteNote}
-          updateNote={updateNote}
-          selectedNote={selectedNote}
-          onNoteSelect={handleNoteSelect}
-          bulkMode={bulkMode}
-          toggleBulkMode={toggleBulkMode}
-          selectAll={selectAll}
-          deleteSelected={deleteSelected}
-          selectedIds={selectedIds}
-          setSelectedIds={setSelectedIds}
-          selectedCount={selectedIds.length}
-          totalNotes={notes.length}
-        />
-      </div>
+    <div className="flex h-screen">
+      <NoteViewer note={selectedNote} onUpdateNote={updateNote} />
+      <Sidebar
+        notes={notes}
+        onNoteAdded={fetchNotes}
+        deleteNote={deleteNote}
+        updateNote={updateNote}
+        selectedNote={selectedNote}
+        onNoteSelect={handleNoteSelect}
+        bulkMode={bulkMode}
+        toggleBulkMode={toggleBulkMode}
+        selectAll={selectAll}
+        deleteSelected={deleteSelected}
+        selectedIds={selectedIds}
+        setSelectedIds={setSelectedIds}
+        selectedCount={selectedIds.length}
+        totalNotes={notes.length}
+      />
     </div>
   );
 }
