@@ -1,9 +1,17 @@
 body {
   background-color: #0f1724;
-  color: #e6eef8;
+  color: #ffffff;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Make form text and placeholders white for better contrast */
+input, textarea, select, button {
+  color: #ffffff;
+}
+::placeholder {
+  color: rgba(255,255,255,0.6);
 }
 
 code {
