@@ -62,7 +62,7 @@ const NoteViewer = ({ note, onUpdateNote }) => {
   };
 
   return (
-    <div className={`flex-1 overflow-y-auto p-8 bg-surface rounded-l-lg transform transition-all duration-300 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
+    <div className={`flex-1 overflow-y-auto p-8 bg-surface transform transition-all duration-300 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
       <div className="flex flex-col mb-8">
         {isEditing ? (
           <input
