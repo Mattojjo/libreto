@@ -137,7 +137,7 @@ const Sidebar = ({ notes = [], onNoteAdded, deleteNote, updateNote, selectedNote
                     <div className="inline-block bg-white/5 px-2 py-1 rounded-md font-poppins text-sm font-semibold text-foreground truncate">{note.title}</div>
                   </div>
                   <div>
-                    <div className="inline-block bg-white/3 px-2 py-1 rounded-md text-xs text-muted truncate">
+                    <div className="inline-block bg-white/3 px-2 py-1 rounded-md text-xs text-foreground truncate">
                       {note.content.slice(0, 60)}{note.content.length > 60 ? '...' : ''}
                     </div>
                   </div>
