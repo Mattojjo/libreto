@@ -37,3 +37,17 @@ code {
   transition-duration: 200ms;
   transition-timing-function: steps(1, end);
 }
+
+/* Micro 200ms transitions for interactive elements */
+.transition-200 {
+  transition-property: background-color, color, transform, opacity, border-color, box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+}
+
+/* Apply to common interactive elements for a smoother feel */
+button, a, input, textarea, select, .cursor-pointer, .rounded-md, .inline-block, .p-2, .p-3, .p-4, .flex-1 {
+  transition: background-color 200ms ease, color 200ms ease, transform 200ms ease, opacity 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+
+/* Prefer using the .transition-200 utility in component markup for specific cases */
