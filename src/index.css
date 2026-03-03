@@ -8,10 +8,19 @@ body {
 
 /* Make form text and placeholders white for better contrast */
 input, textarea, select, button {
-  color: #ffffff;
+  color: #ffffff !important;
+  background-color: #0f1724 !important;
+  caret-color: #ffffff !important;
+  border-color: #243040 !important;
 }
 ::placeholder {
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.6) !important;
+}
+
+/* Force all text to white by default (overrides Tailwind utilities like .text-base)
+   This ensures text remains readable without adding text-white everywhere. */
+body, body * {
+  color: #ffffff !important;
 }
 
 code {
